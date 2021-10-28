@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title">Cambiar titulo del header</ui:insert>
+	</title>
+
+	<style>
+.err {
+	color: red;
+}
+
+.warn {
+	color: yellow;
+}
+
+.info {
+	color: green;
+}
+
+hr {
+	height: 3px;
+	background-color: blue;
+	border: none;
+}
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+body {
+	margin: 0;
+	margin-bottom: 40px;
+}
+
+footer {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+	height: 60px;
+	color: white;
+}
+</style>
+
+	<h:outputStylesheet library="webjars"
+		name="primeflex/2.0.0/primeflex.min.css" />
+
+</h:head>
+
+<h:body>
+	<h1 style="display: inline;">
+		<ui:insert name="title">Cambiar titulo de la pagina</ui:insert>
+	</h1>
+	<h:panelGroup style="display:block; float: right">
+		<h:graphicImage value="/resources/images/bse-logo.png" />
+	</h:panelGroup>
+
+	<br />
+	<br />
+	<br />
+
+	<h:form id="form_menu">
+		<p:menubar>
+			<p:submenu label="Personas" icon="pi pi-fw pi-file">
+
+				<p:menuitem value="Ver personas" icon="pi pi-fw pi-external-link"
+					action="personas.xhtml" />
+			</p:submenu>
+
+
+			<p:divider layout="vertical" />
+
+			<p:menuitem value="Home" icon="pi pi-fw pi-power-off"
+				action="home.xhtml?faces-redirect=true" />
+
+			<f:facet name="options">
+				<p:commandButton value="Logout" icon="pi pi-fw pi-sign-out"
+					styleClass="ui-button-info" action="#{loginController.logout()}" />
+			</f:facet>
+		</p:menubar>
+	</h:form>
+
+	<hr />
+	<br />
+
+	<div style="margin-left: 40px; margin-right: 40px;">
+		<ui:insert name="body">Cambiar el contenido de la pagina</ui:insert>
+	</div>
+	<br />
+
+
+	<p:card id="footer">
+	<hr />
+	<h:outputText value="Curso BSE - Desarrollo de apps JEE   "
+		style="font-style: italic; float: right; color: #3090C7; padding-right:20px;" />
+	</p:card> 
+</h:body>
+
+</html>
+

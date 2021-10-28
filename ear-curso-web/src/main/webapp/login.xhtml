@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+
+<h:head>
+	<title>Bienvenido a la app</title>
+
+	<link type="text/css" rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+
+
+</h:head>
+
+
+<h:body styleClass="cyan lighten-5">
+	<div class="valign-wrapper" id="login-page" jsf:id="login-page-jsf">
+		<div class="container">
+			<div class="center-align">
+				<div class="row">
+					<div class="col s6 offset-s3">
+						<div class="card">
+							<div class="card-content">
+								<img class="responsive-img" style="max-width: 128px;"
+									src="https://www.bse.com.uy/wps/contenthandler/dav/fs-type1/themes/ThemeSimpleComercial/img/bse-logo.png" />
+								<div class="left-align">
+
+									<h:form id="login-form">
+										<p:growl globalOnly="true" id="mensajesGlobales"/>
+										<div class="row">
+											<div class="col s12 input-field">
+												<h:inputText id="username"
+													value="#{loginController.username}" required="true"
+													requiredMessage="Nombre de usuario es requerido!">
+												
+													<f:ajax execute="@this" render="msgUsername msgPassword" event="blur"/>
+												</h:inputText>	
+												<h:outputLabel for="username" value="Usuario" />
+												<p:message for="username" id="msgUsername"/>
+											</div>
+											<div class="col s12 input-field">
+												<h:inputSecret id="password"
+													value="#{loginController.password}" required="true"
+													requiredMessage="Password es requerido!" />
+												<h:outputLabel for="password" value="Password" />
+												<p:message for="password" id="msgPassword"/>
+											</div>
+											<div class="col s12 input-field">
+												<h:commandButton id="btnLogin"
+													action="#{loginController.autenticar()}" value="Login"
+													styleClass="btn btn-large" >
+												
+													<f:ajax execute="@form" render="@form"/>
+												
+												</h:commandButton>	
+											</div>
+										</div>
+									</h:form>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+			$(document).on("ready", function(){
+				$('#login-page').css({'height': window.innerHeight + 'px'});
+			});
+		</script>
+
+</h:body>
+</html>

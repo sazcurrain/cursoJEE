@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    
+    <application>
+    	<!-- Se define un message bundle para sobreescribir los mensajes de JSF -->
+    	<message-bundle>uy.org.curso.i18n.MyMessages</message-bundle>
+    	
+		<!-- Se crea un resource bundle para mensajes localizados -->
+		<resource-bundle>
+			<base-name>uy.org.curso.i18n.AppMessages</base-name>
+			<var>labels</var>
+		</resource-bundle>
+		
+		<locale-config>
+			<default-locale>es</default-locale>
+		</locale-config>		
+	</application>	
+</faces-config>

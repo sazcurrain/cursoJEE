@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{personaController.persona.id}" />
+		<f:viewAction action="#{personaController.findPersonaById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['persona.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+		<p:outputPanel>
+			<h:form id="form" prependId="false">
+
+				<div class="p-field p-grid" jsf:id="divId" jsf:rendered="#{personaController.isManaged(personaController.persona.id)}">
+					<h:outputLabel value="#{labels['persona.id']}:*"
+						for="inputId" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputId"
+							value="#{personaController.persona.id}" required="true"
+							size="40" disabled="#{personaController.isManaged(personaController.persona.id)}">
+						</p:inputText>
+					</div>
+				</div>
+					
+				<div class="p-field p-grid" jsf:id="divNombre">
+					<h:outputLabel value="#{labels['persona.nombre']}:*"
+						for="inputNombre" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputNombre"
+							value="#{personaController.persona.nombre}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgNombre" />
+						</p:inputText>
+						<h:message id="msgNombre" for="inputNombre" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+				<div class="p-field p-grid" jsf:id="divApellido">
+					<h:outputLabel value="#{labels['persona.apellido']}:*"
+						for="inputApellido" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputApellido"
+							value="#{personaController.persona.apellido}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgApellido" />
+						</p:inputText>
+						<h:message id="msgApellido" for="inputApellido" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+
+				<div class="p-field p-grid" jsf:id="divNroDocumento">
+					<h:outputLabel value="#{labels['persona.nroDocumento']}:*"
+						for="inputDocumento" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputNroDocumento"
+							value="#{personaController.persona.nroDocumento}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgDocumento" />
+						</p:inputText>
+						<h:message id="msgDocumento" for="inputNroDocumento"
+							errorClass="err" warnClass="warn" infoClass="info" />
+
+					</div>
+				</div>
+
+				<div class="p-field p-grid" jsf:id="divSexo">
+					<h:outputLabel value="#{labels['persona.sexo']}:*" for="inputSexo"
+						class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:selectOneMenu id="selectSexo"
+							value="#{personaController.persona.sexo}" required="true">
+							<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+							<f:selectItems value="#{personaController.sexoValues}" var="sexo"
+								itemValue="#{sexo}" itemLabel="#{sexo}"
+								noSelectionValue="Seleccionar" />
+							<p:ajax event="change" process="@this"
+								update="msgSexo divProfesion" />
+						</p:selectOneMenu>
+						<h:message id="msgSexo" for="selectSexo" errorClass="err"
+							warnClass="warn" infoClass="info" />
+
+					</div>
+				</div>
+
+				<div class="p-field p-grid" jsf:id="divFechaNac">
+					<h:outputLabel value="#{labels['persona.fechaNacimiento']}:*"
+						for="inputFechaNac" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:datePicker id="inputFecNac"
+							value="#{personaController.persona.fechaNacimiento}"
+							required="true" pattern="dd/MM/yyyy" monthNavigator="true"
+							yearNavigator="true">
+							<p:ajax event="blur" process="@this" update="msgNacimiento" />
+						</p:datePicker>
+						<h:message id="msgNacimiento" for="inputFecNac" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+
+				<div jsf:id="divProfesion">
+					<div class="p-field p-grid"
+						jsf:rendered="#{personaController.persona.sexo eq 'MASCULINO'}">
+						<h:outputLabel value="#{labels['persona.profesion']}:*"
+							for="inputProfesion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="selectProfesion"
+								value="#{personaController.persona.profesion}" required="true" converter="#{baseEntityConverter}">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItems value="#{personaController.profesiones}"
+									var="profesion" itemValue="#{profesion}"
+									itemLabel="#{profesion.descripcion}"
+									noSelectionValue="Seleccionar" />
+								<p:ajax event="change"  process="divProfesion" update="msgProfesion"/>
+							</p:selectOneMenu>
+							<h:message id="msgProfesion" for="selectProfesion"
+								errorClass="err" warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+				</div>
+
+
+				<br />
+
+				<p:commandButton action="#{personaController.crearPersona}"
+					value="Confirmar">
+					<f:ajax event="click" execute="@form" render="@form" />
+				</p:commandButton>
+
+				<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+
+				<h:link outcome="personas.xhtml" value="volver" />
+			</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>ear-curso</artifactId>
+		<groupId>uy.org.curso</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>ear-curso-ejb</artifactId>
+	<packaging>ejb</packaging>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>uy.org.curso</groupId>
+			<artifactId>ear-curso-jpa</artifactId>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.ejb/javax.ejb-api -->
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>javax.ejb-api</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		
+  	  <!-- CDI weld -->
+	  <dependency>
+		  <groupId>org.jboss.weld.se</groupId>
+		  <artifactId>weld-se</artifactId>
+		  <version>2.3.2.Final</version>
+		  <scope>provided</scope>
+	  </dependency>		
+		
+	</dependencies>
+
+	<build>
+		<!-- <finalName>${project.artifactId}</finalName> -->
+		<plugins>
+			<plugin>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>${version.ejb.plugin}</version>
+				<configuration>
+					<!-- Tell Maven we are using EJB 3.2 -->
+					<ejbVersion>3.2</ejbVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+</project>

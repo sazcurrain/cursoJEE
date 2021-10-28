@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<name>ear-curso</name>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>uy.org.curso</groupId>
+	<artifactId>ear-curso</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<!-- Modulos que componene el proyecto -->
+	<modules>
+		<module>ear-curso-ejb</module>
+		<module>ear-curso-web</module>
+		<module>ear-curso-ear</module>
+		<module>ear-curso-jpa</module>
+	</modules>
+
+	<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- JBoss dependency versions -->
+
+		<version.wildfly.maven.plugin>2.0.2.Final</version.wildfly.maven.plugin>
+
+
+		<!-- other plugin versions -->
+		<version.compiler.plugin>3.1</version.compiler.plugin>
+		<version.ear.plugin>3.2.0</version.ear.plugin>
+		<version.ejb.plugin>3.1.0</version.ejb.plugin>
+		<version.war.plugin>3.3.2</version.war.plugin>
+		
+		<!-- Version de Java a utilizar por el proyecto -->
+		<maven.compiler.release>11</maven.compiler.release>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Define the version of the EJB jar so that we don't need to repeat 
+				ourselves in every module -->
+			<dependency>
+				<groupId>uy.org.curso</groupId>
+				<artifactId>ear-curso-ejb</artifactId>
+				<version>${project.version}</version>
+				<type>ejb</type>
+			</dependency>
+
+			<!-- Define the version of the WAR so that we don't need to repeat ourselves 
+				in every module -->
+			<dependency>
+				<groupId>uy.org.curso</groupId>
+				<artifactId>ear-curso-web</artifactId>
+				<version>${project.version}</version>
+				<type>war</type>
+				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>uy.org.curso</groupId>
+				<artifactId>ear-curso-jpa</artifactId>
+				<version>${project.version}</version>
+				<type>ejb</type>
+			</dependency>
+			
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.wildfly.plugins</groupId>
+					<artifactId>wildfly-maven-plugin</artifactId>
+					<version>${version.wildfly.maven.plugin}</version>
+					<inherited>true</inherited>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
