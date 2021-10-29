@@ -24,6 +24,11 @@
 		</dependency>
 		<dependency>
 			<groupId>uy.org.curso</groupId>
+			<artifactId>soluciones-backend</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>uy.org.curso</groupId>
 			<artifactId>ear-curso-ejb</artifactId>
 			<type>ejb</type>
 		</dependency>
@@ -48,7 +53,7 @@
 						in easy way to package any libraries needed in the ear, and automatically 
 						have any modules (EJB-JARs and WARs) use them -->
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
-					
+					<skinnyWars>true</skinnyWars>
 					<modules>
 						<ejbModule>
 							<groupId>uy.org.curso</groupId>
@@ -64,6 +69,11 @@
 							<groupId>uy.org.curso</groupId>
 							<artifactId>ear-curso-web</artifactId>
 							<bundleFileName>ear-curso-web-0.0.1-SNAPSHOT.war</bundleFileName>
+						</webModule>
+						<webModule>
+							<groupId>uy.org.curso</groupId>
+							<artifactId>soluciones-backend</artifactId>
+							<bundleFileName>soluciones-backend-0.0.1-SNAPSHOT.war</bundleFileName>
 						</webModule>
 					</modules>
 <!-- 					<defaultLibBundleDir>lib</defaultLibBundleDir> -->

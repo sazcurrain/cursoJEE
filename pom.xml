@@ -15,6 +15,7 @@
 		<module>ear-curso-web</module>
 		<module>ear-curso-ear</module>
 		<module>ear-curso-jpa</module>
+		<module>soluciones-backend</module>
 	</modules>
 
 	<properties>
@@ -56,6 +57,14 @@
 			<dependency>
 				<groupId>uy.org.curso</groupId>
 				<artifactId>ear-curso-web</artifactId>
+				<version>${project.version}</version>
+				<type>war</type>
+				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>uy.org.curso</groupId>
+				<artifactId>soluciones-backend</artifactId>
 				<version>${project.version}</version>
 				<type>war</type>
 				<scope>compile</scope>
